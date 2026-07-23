@@ -657,14 +657,14 @@ function Colecciones() {
                     {c.tag}
                   </span>
                 </div>
-                <div className="mt-3 flex items-start justify-between gap-3 md:mt-5 md:gap-6">
+                <div className="mt-3 flex flex-col gap-2 md:mt-5 md:flex-row md:items-start md:justify-between md:gap-6">
                   <div>
-                    <h3 className="font-display text-xl text-charcoal md:text-3xl">{c.name}</h3>
+                    <h3 className="font-display text-[1.1rem] leading-tight text-charcoal md:text-3xl">{c.name}</h3>
                     <p className="mt-1 hidden text-sm text-charcoal/65 sm:block md:mt-2">{c.desc}</p>
                   </div>
-                  <span className="mt-1 inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-[0.15em] text-charcoal/70 transition-colors group-hover:text-terracota md:mt-2 md:text-[0.7rem] md:tracking-[0.2em]">
+                  <span className="inline-flex items-center gap-1 border-t border-charcoal/10 pt-2 text-[0.58rem] uppercase tracking-[0.18em] text-charcoal/50 transition-colors group-hover:text-terracota md:mt-1 md:shrink-0 md:border-0 md:pt-0 md:text-[0.7rem] md:tracking-[0.2em] md:text-charcoal/70">
                     Descubrir
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
+                    <ArrowUpRight className="h-3 w-3 transition-transform duration-500 group-hover:rotate-45 md:h-4 md:w-4" />
                   </span>
                 </div>
               </motion.a>
