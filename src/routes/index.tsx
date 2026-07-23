@@ -18,6 +18,7 @@ import {
   Phone,
   Mail,
   Star,
+  MessageCircle,
 } from "lucide-react";
 
 import hero from "@/assets/hero.jpg";
@@ -27,18 +28,6 @@ import colMesa from "@/assets/col-mesa.jpg";
 import colMacetas from "@/assets/col-macetas.jpg";
 import colAlcancias from "@/assets/col-alcancias.jpg";
 import colEspecial from "@/assets/col-especial.jpg";
-import p1 from "@/assets/p1-diseno.jpg";
-import p2 from "@/assets/p2-modelado.jpg";
-import p3 from "@/assets/p3-secado.jpg";
-import p4 from "@/assets/p4-horneado.jpg";
-import p5 from "@/assets/p5-esmaltado.jpg";
-import p6 from "@/assets/p6-acabado.jpg";
-import g1 from "@/assets/g1.jpg";
-import g2 from "@/assets/g2.jpg";
-import g3 from "@/assets/g3.jpg";
-import g4 from "@/assets/g4.jpg";
-import g5 from "@/assets/g5.jpg";
-import g6 from "@/assets/g6.jpg";
 import mayoristas from "@/assets/mayoristas.jpg";
 
 export const Route = createFileRoute("/")({
@@ -129,8 +118,6 @@ const NAV_LINKS = [
   { label: "Inicio", href: "#inicio" },
   { label: "Nosotros", href: "#nosotros" },
   { label: "Colecciones", href: "#colecciones" },
-  { label: "Proceso", href: "#proceso" },
-  { label: "Galería", href: "#galeria" },
   { label: "Mayoristas", href: "#mayoristas" },
   { label: "Contacto", href: "#contacto" },
 ];
@@ -149,24 +136,24 @@ function Nav() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled ? "backdrop-blur-xl bg-bone/70 border-b border-charcoal/8" : "bg-transparent"
+        className={`fixed inset-x-0 top-0 z-[1000] transition-all duration-300 ${
+          scrolled ? "bg-bone shadow-sm" : "bg-bone/95 backdrop-blur-sm"
         }`}
       >
-        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10">
+        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
           <a href="#inicio" className="flex items-center gap-3">
-            <img src="/favicon.ico" alt="Martin i Ross" className="h-9 w-9 rounded-full" />
-            <span className="font-display text-lg tracking-tight text-charcoal">
+            <img src="/favicon.ico" alt="Martin i Ross" className="h-11 w-11 rounded-full" />
+            <span className="font-display text-xl tracking-tight text-charcoal">
               Martin <span className="italic text-clay">i</span> Ross
             </span>
           </a>
 
-          <ul className="hidden items-center gap-8 lg:flex">
+          <ul className="hidden items-center gap-6 lg:flex">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="group relative text-[0.78rem] uppercase tracking-[0.18em] text-charcoal/75 transition-colors hover:text-charcoal"
+                  className="group relative text-[0.75rem] uppercase tracking-[0.16em] text-charcoal/75 transition-colors hover:text-charcoal"
                 >
                   {l.label}
                   <span className="absolute -bottom-1 left-0 h-px w-0 bg-terracota transition-all duration-500 group-hover:w-full" />
@@ -178,7 +165,7 @@ function Nav() {
           <div className="flex items-center gap-3">
             <a
               href="#contacto"
-              className="hidden items-center gap-2 bg-terracota px-5 py-3 text-[0.75rem] uppercase tracking-[0.2em] text-bone transition-all duration-500 hover:bg-charcoal md:inline-flex"
+              className="hidden items-center gap-2 bg-terracota px-5 py-2.5 text-[0.7rem] uppercase tracking-[0.18em] text-bone transition-all duration-500 hover:bg-charcoal md:inline-flex"
             >
               Cotizar
               <ArrowRight className="h-3.5 w-3.5" />
@@ -186,7 +173,7 @@ function Nav() {
             <button
               aria-label="Abrir menú"
               onClick={() => setOpen(true)}
-              className="grid h-10 w-10 place-items-center border border-charcoal/20 lg:hidden"
+              className="grid h-9 w-9 place-items-center border border-charcoal/20 lg:hidden"
             >
               <Menu className="h-4 w-4" />
             </button>
@@ -615,199 +602,6 @@ function Colecciones() {
   );
 }
 
-const STEPS = [
-  {
-    n: "01",
-    title: "Diseño",
-    text: "Bocetos, referencias y una idea que nace de la conversación con el cliente.",
-    img: p1,
-  },
-  {
-    n: "02",
-    title: "Modelado",
-    text: "El torno da forma a la arcilla. Cada pieza guarda la huella de quien la modela.",
-    img: p2,
-  },
-  {
-    n: "03",
-    title: "Secado",
-    text: "La pieza descansa al aire durante días hasta encontrar su punto exacto.",
-    img: p3,
-  },
-  {
-    n: "04",
-    title: "Horneado",
-    text: "Más de 1000°C que transforman la arcilla en cerámica resistente para siempre.",
-    img: p4,
-  },
-  {
-    n: "05",
-    title: "Esmaltado",
-    text: "Aplicamos esmaltes propios que aportan color, textura y profundidad.",
-    img: p5,
-  },
-  { n: "06", title: "Acabado", text: "Última revisión, firma y embalaje cuidadoso para su viaje.", img: p6 },
-];
-
-function Proceso() {
-  return (
-    <section id="proceso" className="relative bg-charcoal py-28 text-bone md:py-40">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-        <Reveal>
-          <Eyebrow>
-            <span className="text-bone/60">Proceso artesanal</span>
-          </Eyebrow>
-          <h2 className="mt-6 max-w-3xl font-display text-5xl leading-tight md:text-7xl">
-            De la arcilla al objeto, <span className="italic text-clay">seis pasos</span> hechos con
-            paciencia.
-          </h2>
-        </Reveal>
-
-        <div className="mt-20 space-y-24">
-          {STEPS.map((s, i) => {
-            const reverse = i % 2 === 1;
-            return (
-              <div
-                key={s.n}
-                className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16 ${
-                  reverse ? "lg:[&>*:first-child]:order-2" : ""
-                }`}
-              >
-                <Reveal className="lg:col-span-6">
-                  <div className="overflow-hidden">
-                    <motion.img
-                      src={s.img}
-                      alt={s.title}
-                      loading="lazy"
-                      initial={{ scale: 1.15 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="aspect-[4/5] w-full object-cover"
-                    />
-                  </div>
-                </Reveal>
-                <Reveal delay={0.15} className="lg:col-span-6 lg:pl-8">
-                  <span className="font-display text-6xl italic text-clay">{s.n}</span>
-                  <h3 className="mt-4 font-display text-5xl md:text-6xl">{s.title}</h3>
-                  <div className="hairline my-8 max-w-xs bg-bone/25" />
-                  <p className="max-w-md text-lg leading-relaxed text-bone/75">{s.text}</p>
-                </Reveal>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Galeria() {
-  const [open, setOpen] = useState<string | null>(null);
-  const imgs = [g1, g2, g3, g4, g5, g6];
-  return (
-    <section id="galeria" className="bg-bone py-28 md:py-40">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
-          <Reveal>
-            <Eyebrow>Galería</Eyebrow>
-            <h2 className="mt-6 font-display text-5xl leading-tight text-charcoal md:text-7xl">
-              Pequeños fragmentos <br />
-              del <span className="italic text-terracota">taller.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="max-w-sm text-charcoal/65">
-              Un archivo visual de piezas, texturas y espacios que hemos ayudado a vestir.
-            </p>
-          </Reveal>
-        </div>
-
-        <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-          <button onClick={() => setOpen(imgs[0])} className="group col-span-2 row-span-2 overflow-hidden">
-            <img
-              src={imgs[0]}
-              loading="lazy"
-              alt="Colección de jarrones cerámicos"
-              className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
-            />
-          </button>
-          <button onClick={() => setOpen(imgs[1])} className="group overflow-hidden">
-            <img
-              src={imgs[1]}
-              loading="lazy"
-              alt="Vajilla artesanal"
-              className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
-            />
-          </button>
-          <button onClick={() => setOpen(imgs[2])} className="group row-span-2 overflow-hidden">
-            <img
-              src={imgs[2]}
-              loading="lazy"
-              alt="Pieza escultórica"
-              className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
-            />
-          </button>
-          <button onClick={() => setOpen(imgs[3])} className="group overflow-hidden">
-            <img
-              src={imgs[3]}
-              loading="lazy"
-              alt="Detalle de textura de cerámica"
-              className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
-            />
-          </button>
-          <button onClick={() => setOpen(imgs[4])} className="group col-span-2 overflow-hidden">
-            <img
-              src={imgs[4]}
-              loading="lazy"
-              alt="Interior con piezas cerámicas"
-              className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
-            />
-          </button>
-          <button
-            onClick={() => setOpen(imgs[5])}
-            className="group col-span-2 overflow-hidden md:col-span-1"
-          >
-            <img
-              src={imgs[5]}
-              loading="lazy"
-              alt="Interior del taller"
-              className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
-            />
-          </button>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(null)}
-            className="fixed inset-0 z-[70] grid place-items-center bg-charcoal/95 p-6"
-          >
-            <button
-              className="absolute right-6 top-6 grid h-11 w-11 place-items-center border border-bone/30 text-bone"
-              aria-label="Cerrar"
-            >
-              <X className="h-5 w-5" />
-            </button>
-            <motion.img
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              src={open}
-              alt=""
-              className="max-h-[85vh] max-w-[90vw] object-contain"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
-  );
-}
-
 function Mayoristas() {
   return (
     <section id="mayoristas" className="relative overflow-hidden bg-charcoal text-bone">
@@ -1204,23 +998,36 @@ function Footer() {
   );
 }
 
+function WhatsAppButton() {
+  return (
+    <a
+      href="https://wa.me/573162484811"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-[100] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl md:bottom-8 md:right-8 md:h-16 md:w-16"
+      aria-label="Contactar por WhatsApp"
+    >
+      <MessageCircle className="h-7 w-7 md:h-8 md:w-8" strokeWidth={2.5} />
+    </a>
+  );
+}
+
 function Landing() {
   return (
-    <main className="bg-bone text-charcoal">
+    <main className="bg-bone text-charcoal pt-16 md:pt-20">
       <Nav />
       <Hero />
       <Marquee />
       <Story />
       <Valores />
       <Colecciones />
-      <Proceso />
-      <Galeria />
       <Mayoristas />
       <Stats />
       <Testimonios />
       <Faq />
       <CtaFinal />
       <Footer />
+      <WhatsAppButton />
     </main>
   );
 }
