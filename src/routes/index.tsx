@@ -155,9 +155,7 @@ function Nav() {
       >
         <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10">
           <a href="#inicio" className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-clay font-display text-lg italic text-bone">
-              M
-            </span>
+            <img src="/favicon.ico" alt="Martin i Ross" className="h-9 w-9 rounded-full" />
             <span className="font-display text-lg tracking-tight text-charcoal">
               Martin <span className="italic text-clay">i</span> Ross
             </span>
@@ -205,9 +203,12 @@ function Nav() {
             className="fixed inset-0 z-[60] bg-bone"
           >
             <div className="flex items-center justify-between px-6 py-5">
-              <span className="font-display text-lg">
-                Martin <span className="italic text-clay">i</span> Ross
-              </span>
+              <div className="flex items-center gap-3">
+                <img src="/favicon.ico" alt="Martin i Ross" className="h-9 w-9 rounded-full" />
+                <span className="font-display text-lg">
+                  Martin <span className="italic text-clay">i</span> Ross
+                </span>
+              </div>
               <button
                 aria-label="Cerrar menú"
                 onClick={() => setOpen(false)}
