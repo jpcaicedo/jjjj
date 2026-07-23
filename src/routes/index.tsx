@@ -136,13 +136,12 @@ function Nav() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed inset-x-0 top-0 z-[1000] transition-all duration-300 ${
-          scrolled ? "bg-bone shadow-sm" : "bg-bone/95 backdrop-blur-sm"
-        }`}
+        className={`fixed inset-x-0 top-0 z-[1000] transition-all duration-300 ${scrolled ? "bg-bone shadow-sm" : "bg-bone/95 backdrop-blur-sm"
+          }`}
       >
-        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-10">
-          <a href="#inicio" className="flex items-center gap-3">
-            <img src="/favicon.ico" alt="Martin i Ross" className="h-11 w-11 rounded-full" />
+        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3 md:px-10 md:py-4">
+          <a href="#inicio" className="flex items-center gap-2 md:gap-3">
+            <img src="/favicon.ico" alt="Martin i Ross" className="h-9 w-9 rounded-full md:h-11 md:w-11" />
             <span className="font-display text-xl tracking-tight text-charcoal">
               Martin <span className="italic text-clay">i</span> Ross
             </span>
@@ -236,7 +235,7 @@ function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section id="inicio" ref={ref} className="relative h-[100svh] w-full overflow-hidden bg-charcoal">
+    <section id="inicio" ref={ref} className="relative h-[100svh] w-full overflow-hidden bg-charcoal" style={{ minHeight: '500px' }}>
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <img
           src={hero}
@@ -248,12 +247,12 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/20 to-charcoal/30" />
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-28 pt-32 md:px-10 md:pb-32">
+      <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-24 pt-20 md:px-10 md:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1 }}
-          className="mb-8"
+          className="mb-4 md:mb-8"
         >
           <span className="eyebrow text-bone/70">
             <span className="mr-3 inline-block h-px w-8 bg-bone/50 align-middle" />
@@ -262,7 +261,7 @@ function Hero() {
         </motion.div>
 
         <div className="max-w-4xl">
-          <h1 className="font-display text-[3rem] leading-[0.95] text-bone md:text-[5.5rem] lg:text-[7rem]">
+          <h1 className="font-display text-[2.4rem] leading-[0.95] text-bone sm:text-[3rem] md:text-[5.5rem] lg:text-[7rem]">
             {"La belleza de la".split(" ").map((w, i) => (
               <motion.span
                 key={i}
@@ -298,7 +297,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.9 }}
-          className="mt-10 max-w-xl text-[1.05rem] leading-relaxed text-bone/85"
+          className="mt-5 max-w-xl text-[0.95rem] leading-relaxed text-bone/85 md:mt-10 md:text-[1.05rem]"
         >
           Desde Cali creamos piezas artesanales que combinan tradición colombiana y diseño
           contemporáneo para transformar cada espacio.
@@ -308,7 +307,7 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.35, duration: 0.9 }}
-          className="mt-10 flex flex-wrap gap-3"
+          className="mt-6 flex flex-wrap gap-3 md:mt-10"
         >
           <Button
             href="#colecciones"
@@ -329,12 +328,12 @@ function Hero() {
         transition={{ delay: 1.6, duration: 1 }}
         className="absolute bottom-0 left-0 right-0 z-10 border-t border-bone/15 bg-charcoal/40 backdrop-blur-sm"
       >
-        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-px bg-bone/15 md:grid-cols-4">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-px bg-bone/15 md:grid-cols-4" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
           {["Fabricación propia", "Cerámica artesanal", "Envíos nacionales", "Diseño colombiano"].map(
             (t) => (
               <div
                 key={t}
-                className="flex items-center gap-2 bg-charcoal/70 px-4 py-4 text-[0.72rem] uppercase tracking-[0.15em] text-bone/85 md:px-6"
+                className="flex items-center gap-2 bg-charcoal/70 px-3 py-3 text-[0.65rem] uppercase tracking-[0.1em] text-bone/85 md:px-6 md:py-4 md:text-[0.72rem] md:tracking-[0.15em]"
               >
                 <Check className="h-3.5 w-3.5 text-clay" strokeWidth={2.5} />
                 {t}
@@ -357,7 +356,7 @@ function Marquee() {
     "Envíos a toda Colombia",
   ];
   return (
-    <section className="overflow-hidden border-y border-charcoal/10 bg-bone py-6">
+    <section className="overflow-hidden border-y border-charcoal/10 bg-bone py-4 md:py-6">
       <motion.div
         animate={{ x: ["0%", "-50%"] }}
         transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
@@ -366,7 +365,7 @@ function Marquee() {
         {[...items, ...items, ...items].map((t, i) => (
           <span
             key={i}
-            className="mx-8 flex items-center gap-8 font-display text-3xl italic text-charcoal/80 md:text-5xl"
+            className="mx-5 flex items-center gap-5 font-display text-xl italic text-charcoal/80 md:mx-8 md:gap-8 md:text-5xl"
           >
             {t}
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-terracota" />
@@ -379,8 +378,8 @@ function Marquee() {
 
 function Story() {
   return (
-    <section id="nosotros" className="relative bg-bone py-28 md:py-40">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 md:px-10 lg:grid-cols-12 lg:gap-24">
+    <section id="nosotros" className="relative bg-bone py-14 md:py-40">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 md:px-10 lg:grid-cols-12 lg:gap-24">
         <Reveal className="lg:col-span-6">
           <div className="relative">
             <div className="overflow-hidden">
@@ -388,7 +387,7 @@ function Story() {
                 src={story}
                 alt="Artesano modelando cerámica en el taller"
                 loading="lazy"
-                className="aspect-[4/5] w-full object-cover"
+                className="aspect-[3/2] w-full object-cover md:aspect-[4/5]"
                 initial={{ scale: 1.15 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
@@ -407,14 +406,14 @@ function Story() {
             <Eyebrow>Nuestra historia</Eyebrow>
           </Reveal>
           <Reveal delay={0.1}>
-            <h2 className="mt-6 font-display text-5xl leading-[1.05] text-charcoal md:text-6xl lg:text-7xl">
+            <h2 className="mt-4 font-display text-4xl leading-[1.05] text-charcoal md:mt-6 md:text-6xl lg:text-7xl">
               Tradición <br />
               convertida <br />
               en <span className="italic text-terracota">diseño.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="mt-10 space-y-6 text-[1.02rem] leading-relaxed text-charcoal/75">
+            <div className="mt-5 space-y-4 text-[0.95rem] leading-relaxed text-charcoal/75 md:mt-10 md:space-y-6 md:text-[1.02rem]">
               <p>
                 Nacimos en Cali como una fábrica familiar y hoy seguimos moldeando cada pieza con
                 nuestras manos. Trabajamos arcillas locales, esmaltes propios y hornos que conocemos
@@ -428,7 +427,7 @@ function Story() {
           </Reveal>
 
           <Reveal delay={0.3}>
-            <div className="mt-12 grid grid-cols-2 gap-8 border-t border-charcoal/10 pt-10">
+            <div className="mt-8 grid grid-cols-2 gap-5 border-t border-charcoal/10 pt-6 md:mt-12 md:gap-8 md:pt-10">
               {[
                 ["Fabricación propia", "Taller en Cali"],
                 ["Materiales", "Arcilla y esmalte"],
@@ -472,27 +471,27 @@ function Valores() {
     },
   ];
   return (
-    <section className="bg-sand/60 py-28 md:py-36">
+    <section className="bg-sand/60 py-14 md:py-36">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <div className="max-w-3xl">
             <Eyebrow>Lo que nos define</Eyebrow>
-            <h2 className="mt-6 font-display text-5xl leading-tight text-charcoal md:text-6xl">
+            <h2 className="mt-4 font-display text-4xl leading-tight text-charcoal md:mt-6 md:text-6xl">
               Un oficio hecho con <span className="italic text-terracota">intención.</span>
             </h2>
           </div>
         </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-px bg-charcoal/10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-px bg-charcoal/10 sm:grid-cols-2 md:mt-16 lg:grid-cols-4">
           {items.map((it, i) => (
             <Reveal key={it.title} delay={i * 0.08} className="group bg-sand/60">
-              <div className="flex h-full flex-col justify-between bg-bone p-8 transition-all duration-500 group-hover:bg-charcoal group-hover:text-bone md:p-10">
+              <div className="flex h-full flex-col justify-between bg-bone p-6 transition-all duration-500 group-hover:bg-charcoal group-hover:text-bone md:p-10">
                 <div>
                   <it.icon
                     className="h-8 w-8 text-terracota transition-colors group-hover:text-clay"
                     strokeWidth={1.2}
                   />
-                  <h3 className="mt-8 font-display text-3xl">{it.title}</h3>
+                  <h3 className="mt-5 font-display text-2xl md:mt-8 md:text-3xl">{it.title}</h3>
                 </div>
                 <p className="mt-6 text-sm leading-relaxed text-charcoal/70 transition-colors group-hover:text-bone/70">
                   {it.text}
@@ -529,12 +528,12 @@ function Colecciones() {
   const filters = ["Todas", ...COLLECTIONS.map((c) => c.tag)];
   const visible = filter === "Todas" ? COLLECTIONS : COLLECTIONS.filter((c) => c.tag === filter);
   return (
-    <section id="colecciones" className="bg-bone py-28 md:py-40">
+    <section id="colecciones" className="bg-bone py-14 md:py-40">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
           <Reveal>
             <Eyebrow>Colecciones</Eyebrow>
-            <h2 className="mt-6 font-display text-5xl leading-[1.02] text-charcoal md:text-7xl">
+            <h2 className="mt-4 font-display text-4xl leading-[1.02] text-charcoal md:mt-6 md:text-7xl">
               Cinco maneras de <br />
               <span className="italic text-terracota">habitar</span> la arcilla.
             </h2>
@@ -545,11 +544,10 @@ function Colecciones() {
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-4 py-2 text-[0.72rem] uppercase tracking-[0.18em] transition-all ${
-                    filter === f
+                  className={`px-4 py-2 text-[0.72rem] uppercase tracking-[0.18em] transition-all ${filter === f
                       ? "bg-charcoal text-bone"
                       : "border border-charcoal/20 text-charcoal/70 hover:border-charcoal"
-                  }`}
+                    }`}
                 >
                   {f}
                 </button>
@@ -558,7 +556,7 @@ function Colecciones() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {visible.map((c, i) => (
               <motion.a
@@ -576,19 +574,19 @@ function Colecciones() {
                     src={c.img}
                     alt={`Colección ${c.name}`}
                     loading="lazy"
-                    className="aspect-[4/5] w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
+                    className="aspect-[3/4] w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-charcoal/0 transition-colors duration-500 group-hover:bg-charcoal/10" />
                   <span className="absolute left-4 top-4 bg-bone/90 px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-charcoal">
                     {c.tag}
                   </span>
                 </div>
-                <div className="mt-5 flex items-start justify-between gap-6">
+                <div className="mt-3 flex items-start justify-between gap-3 md:mt-5 md:gap-6">
                   <div>
-                    <h3 className="font-display text-3xl text-charcoal">{c.name}</h3>
-                    <p className="mt-2 max-w-xs text-sm text-charcoal/65">{c.desc}</p>
+                    <h3 className="font-display text-xl text-charcoal md:text-3xl">{c.name}</h3>
+                    <p className="mt-1 hidden text-sm text-charcoal/65 sm:block md:mt-2">{c.desc}</p>
                   </div>
-                  <span className="mt-2 inline-flex items-center gap-1 text-[0.7rem] uppercase tracking-[0.2em] text-charcoal/70 transition-colors group-hover:text-terracota">
+                  <span className="mt-1 inline-flex items-center gap-1 text-[0.6rem] uppercase tracking-[0.15em] text-charcoal/70 transition-colors group-hover:text-terracota md:mt-2 md:text-[0.7rem] md:tracking-[0.2em]">
                     Descubrir
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
                   </span>
@@ -606,7 +604,7 @@ function Mayoristas() {
   return (
     <section id="mayoristas" className="relative overflow-hidden bg-charcoal text-bone">
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative min-h-[380px] overflow-hidden">
+        <div className="relative min-h-[220px] overflow-hidden md:min-h-[380px]">
           <motion.img
             src={mayoristas}
             alt="Interior con cerámica artesanal a gran escala"
@@ -618,20 +616,20 @@ function Mayoristas() {
             className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
-        <div className="px-6 py-24 md:px-16 md:py-32">
+        <div className="px-6 py-10 md:px-16 md:py-32">
           <Reveal>
             <Eyebrow>
               <span className="text-bone/60">Mayoristas & proyectos</span>
             </Eyebrow>
-            <h2 className="mt-6 font-display text-5xl leading-tight md:text-6xl">
+            <h2 className="mt-4 font-display text-4xl leading-tight md:mt-6 md:text-6xl">
               Diseñamos <span className="italic text-clay">a escala</span> con quienes crean
               espacios.
             </h2>
-            <p className="mt-8 max-w-md text-bone/75">
+            <p className="mt-5 max-w-md text-[0.9rem] text-bone/75 md:mt-8 md:text-base">
               Trabajamos junto a estudios y marcas que buscan piezas únicas para dotar sus
               proyectos con alma artesanal.
             </p>
-            <ul className="mt-10 grid max-w-md grid-cols-2 gap-4 text-sm">
+            <ul className="mt-5 grid max-w-md grid-cols-2 gap-3 text-sm md:mt-10 md:gap-4">
               {["Arquitectos", "Interioristas", "Tiendas", "Hoteles", "Restaurantes", "Boutiques"].map(
                 (t) => (
                   <li key={t} className="flex items-center gap-3 text-bone/85">
@@ -641,7 +639,7 @@ function Mayoristas() {
                 ),
               )}
             </ul>
-            <div className="mt-12">
+            <div className="mt-8 md:mt-12">
               <Button href="#contacto" variant="light">
                 Solicitar catálogo
               </Button>
@@ -682,14 +680,14 @@ function Stats() {
     { n: 28, l: "Ciudades atendidas" },
   ];
   return (
-    <section className="border-y border-charcoal/10 bg-sand/50 py-24">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-y-14 px-6 md:grid-cols-4 md:px-10">
+    <section className="border-y border-charcoal/10 bg-sand/50 py-12 md:py-24">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-y-10 px-6 md:grid-cols-4 md:px-10 md:gap-y-14">
         {stats.map((s, i) => (
           <Reveal key={s.l} delay={i * 0.08} className="text-center">
-            <p className="font-display text-6xl leading-none text-terracota md:text-7xl">
+            <p className="font-display text-5xl leading-none text-terracota md:text-7xl">
               <Counter to={s.n} />
             </p>
-            <p className="eyebrow mt-4 text-charcoal/60">{s.l}</p>
+            <p className="eyebrow mt-3 text-charcoal/60 md:mt-4">{s.l}</p>
           </Reveal>
         ))}
       </div>
@@ -721,12 +719,12 @@ const TESTIMONIALS = [
 function Testimonios() {
   const [i, setI] = useState(0);
   return (
-    <section className="bg-bone py-28 md:py-36">
+    <section className="bg-bone py-14 md:py-36">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <div className="flex items-end justify-between gap-6">
           <Reveal>
             <Eyebrow>Lo que dicen</Eyebrow>
-            <h2 className="mt-6 font-display text-5xl leading-tight text-charcoal md:text-6xl">
+            <h2 className="mt-4 font-display text-4xl leading-tight text-charcoal md:mt-6 md:text-6xl">
               Historias que <span className="italic text-terracota">vuelven.</span>
             </h2>
           </Reveal>
@@ -748,7 +746,7 @@ function Testimonios() {
           </div>
         </div>
 
-        <div className="relative mt-14 overflow-hidden">
+        <div className="relative mt-8 overflow-hidden md:mt-14">
           <AnimatePresence mode="wait">
             <motion.div
               key={i}
@@ -764,12 +762,12 @@ function Testimonios() {
                     <Star key={s} className="h-4 w-4 fill-terracota" />
                   ))}
                 </div>
-                <blockquote className="mt-8 font-display text-3xl leading-[1.2] text-charcoal md:text-5xl">
+                <blockquote className="mt-5 font-display text-xl leading-[1.2] text-charcoal md:mt-8 md:text-5xl">
                   “{TESTIMONIALS[i].quote}”
                 </blockquote>
-                <div className="mt-10 border-t border-charcoal/10 pt-6">
-                  <p className="font-display text-2xl text-charcoal">{TESTIMONIALS[i].name}</p>
-                  <p className="mt-1 text-sm text-charcoal/60">{TESTIMONIALS[i].role}</p>
+                <div className="mt-6 border-t border-charcoal/10 pt-4 md:mt-10 md:pt-6">
+                  <p className="font-display text-xl text-charcoal md:text-2xl">{TESTIMONIALS[i].name}</p>
+                  <p className="mt-1 text-xs text-charcoal/60 md:text-sm">{TESTIMONIALS[i].role}</p>
                 </div>
               </div>
               <div className="hidden md:col-span-4 md:flex md:items-end md:justify-end">
@@ -779,7 +777,7 @@ function Testimonios() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-10 flex gap-2">
+        <div className="mt-6 flex gap-2 md:mt-10">
           {TESTIMONIALS.map((_, k) => (
             <button
               key={k}
@@ -824,15 +822,15 @@ const FAQ = [
 function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="bg-sand/40 py-28 md:py-36">
-      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-16 px-6 md:px-10 lg:grid-cols-12">
+    <section className="bg-sand/40 py-14 md:py-36">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-8 px-6 md:px-10 lg:grid-cols-12 lg:gap-16">
         <Reveal className="lg:col-span-4">
           <Eyebrow>Preguntas</Eyebrow>
-          <h2 className="mt-6 font-display text-5xl leading-tight text-charcoal md:text-6xl">
+          <h2 className="mt-4 font-display text-4xl leading-tight text-charcoal md:mt-6 md:text-6xl">
             Todo lo que <br />
             <span className="italic text-terracota">deberías saber.</span>
           </h2>
-          <p className="mt-8 max-w-sm text-charcoal/70">
+          <p className="mt-4 max-w-sm text-sm text-charcoal/70 md:mt-8 md:text-base">
             ¿No encuentras tu respuesta? Escríbenos y con gusto te ayudamos.
           </p>
         </Reveal>
@@ -845,10 +843,10 @@ function Faq() {
                 <li key={f.q} className="border-b border-charcoal/15">
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-6 py-7 text-left"
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left md:gap-6 md:py-7"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-display text-2xl text-charcoal md:text-3xl">{f.q}</span>
+                    <span className="font-display text-xl text-charcoal md:text-3xl">{f.q}</span>
                     <span className="grid h-9 w-9 shrink-0 place-items-center border border-charcoal/30">
                       {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                     </span>
@@ -878,7 +876,7 @@ function Faq() {
 
 function CtaFinal() {
   return (
-    <section id="contacto" className="relative overflow-hidden bg-terracota py-32 text-bone md:py-48">
+    <section id="contacto" className="relative overflow-hidden bg-terracota py-16 text-bone md:py-48">
       <div className="pointer-events-none absolute inset-0 opacity-30 mix-blend-soft-light">
         <div className="absolute -left-24 top-1/3 h-96 w-96 rounded-full bg-clay blur-3xl" />
         <div className="absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-charcoal/60 blur-3xl" />
@@ -890,19 +888,19 @@ function CtaFinal() {
           </Eyebrow>
         </Reveal>
         <Reveal delay={0.1}>
-          <h2 className="mx-auto mt-8 max-w-5xl font-display text-6xl leading-[0.98] md:text-8xl lg:text-9xl">
+          <h2 className="mx-auto mt-6 max-w-5xl font-display text-4xl leading-[0.98] md:mt-8 md:text-8xl lg:text-9xl">
             Creamos piezas <br />
             que <span className="italic">cuentan historias.</span>
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mx-auto mt-10 max-w-xl text-bone/80">
+          <p className="mx-auto mt-5 max-w-xl text-[0.9rem] text-bone/80 md:mt-10 md:text-base">
             Cuéntanos sobre tu proyecto o el objeto que sueñas. Nuestro equipo te acompañará en
             cada etapa del proceso.
           </p>
         </Reveal>
         <Reveal delay={0.3}>
-          <div className="mt-12 flex flex-wrap justify-center gap-3">
+          <div className="mt-8 flex flex-wrap justify-center gap-3 md:mt-12">
             <Button
               href="mailto:hola@martiniross.co"
               variant="solid"
@@ -923,8 +921,8 @@ function CtaFinal() {
 function Footer() {
   return (
     <footer className="bg-charcoal text-bone">
-      <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10">
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
+      <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-10 md:py-20">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <a href="#inicio" className="flex items-center gap-3">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-clay font-display text-lg italic text-charcoal">
@@ -934,11 +932,11 @@ function Footer() {
                 Martin <span className="italic text-clay">i</span> Ross
               </span>
             </a>
-            <p className="mt-8 max-w-sm text-bone/70">
+            <p className="mt-5 max-w-sm text-sm text-bone/70 md:mt-8 md:text-base">
               Cerámica artesanal hecha a mano en Cali, Colombia. Fabricación propia y diseño
               contemporáneo desde hace más de cuatro décadas.
             </p>
-            <div className="mt-10 flex items-center gap-3">
+            <div className="mt-6 flex items-center gap-3 md:mt-10">
               <a
                 href="https://instagram.com"
                 aria-label="Instagram"
@@ -989,7 +987,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col justify-between gap-4 border-t border-bone/15 pt-8 text-xs uppercase tracking-[0.18em] text-bone/50 md:flex-row">
+        <div className="mt-8 flex flex-col justify-between gap-3 border-t border-bone/15 pt-6 text-xs uppercase tracking-[0.15em] text-bone/50 md:mt-20 md:flex-row md:pt-8">
           <p>© {new Date().getFullYear()} Cerámicas Martin i Ross. Todos los derechos reservados.</p>
           <p>Hecho con arcilla en Cali · Colombia</p>
         </div>
@@ -1014,7 +1012,7 @@ function WhatsAppButton() {
 
 function Landing() {
   return (
-    <main className="bg-bone text-charcoal pt-16 md:pt-20">
+    <main className="bg-bone text-charcoal pt-[60px] md:pt-20">
       <Nav />
       <Hero />
       <Marquee />
