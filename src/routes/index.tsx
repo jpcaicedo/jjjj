@@ -92,14 +92,17 @@ function Button({
   variant = "solid",
   href = "#",
   className = "",
+  compact = false,
 }: {
   children: React.ReactNode;
   variant?: "solid" | "ghost" | "light";
   href?: string;
   className?: string;
+  compact?: boolean;
 }) {
-  const base =
-    "group inline-flex items-center gap-2 px-6 py-3.5 text-[0.78rem] uppercase tracking-[0.2em] font-medium transition-all duration-500";
+  const base = compact
+    ? "group inline-flex items-center gap-1.5 px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.15em] font-medium transition-all duration-500 md:px-6 md:py-3.5 md:text-[0.78rem] md:tracking-[0.2em] md:gap-2"
+    : "group inline-flex items-center gap-2 px-6 py-3.5 text-[0.78rem] uppercase tracking-[0.2em] font-medium transition-all duration-500";
   const styles = {
     solid: "bg-charcoal text-bone hover:bg-terracota",
     ghost:
@@ -109,7 +112,7 @@ function Button({
   return (
     <a href={href} className={`${base} ${styles} ${className}`}>
       <span>{children}</span>
-      <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
+      <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:rotate-45 md:h-4 md:w-4" />
     </a>
   );
 }
@@ -136,13 +139,13 @@ function Nav() {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed inset-x-0 top-0 z-[1000] transition-all duration-300 ${scrolled ? "bg-bone shadow-sm" : "bg-bone/95 backdrop-blur-sm"
+        className={`fixed inset-x-0 top-0 z-[1000] transition-all duration-300 ${scrolled ? "bg-bone/98 shadow-sm backdrop-blur-md" : "bg-bone/90 backdrop-blur-sm"
           }`}
       >
-        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3 md:px-10 md:py-4">
-          <a href="#inicio" className="flex items-center gap-2 md:gap-3">
-            <img src="/favicon.ico" alt="Martin i Ross" className="h-9 w-9 rounded-full md:h-11 md:w-11" />
-            <span className="font-display text-xl tracking-tight text-charcoal">
+        <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-2.5 md:px-10 md:py-4">
+          <a href="#inicio" className="flex items-center gap-2">
+            <img src="/favicon.ico" alt="Martin i Ross" className="h-8 w-8 rounded-full md:h-11 md:w-11" />
+            <span className="font-display text-[1.1rem] tracking-tight text-charcoal md:text-xl">
               Martin <span className="italic text-clay">i</span> Ross
             </span>
           </a>
@@ -161,7 +164,7 @@ function Nav() {
             ))}
           </ul>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <a
               href="#contacto"
               className="hidden items-center gap-2 bg-terracota px-5 py-2.5 text-[0.7rem] uppercase tracking-[0.18em] text-bone transition-all duration-500 hover:bg-charcoal md:inline-flex"
@@ -169,12 +172,19 @@ function Nav() {
               Cotizar
               <ArrowRight className="h-3.5 w-3.5" />
             </a>
+            {/* Mobile: compact CTA pill */}
+            <a
+              href="#contacto"
+              className="flex items-center gap-1.5 bg-terracota px-3.5 py-2 text-[0.62rem] uppercase tracking-[0.14em] text-bone transition-all duration-300 hover:bg-charcoal lg:hidden"
+            >
+              Cotizar
+            </a>
             <button
               aria-label="Abrir menú"
               onClick={() => setOpen(true)}
-              className="grid h-9 w-9 place-items-center border border-charcoal/20 lg:hidden"
+              className="grid h-8 w-8 place-items-center border border-charcoal/20 lg:hidden"
             >
-              <Menu className="h-4 w-4" />
+              <Menu className="h-3.5 w-3.5" />
             </button>
           </div>
         </nav>
@@ -183,44 +193,56 @@ function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-bone"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[2000] flex flex-col bg-bone"
           >
-            <div className="flex items-center justify-between px-6 py-5">
-              <div className="flex items-center gap-3">
-                <img src="/favicon.ico" alt="Martin i Ross" className="h-9 w-9 rounded-full" />
-                <span className="font-display text-lg">
+            <div className="flex items-center justify-between border-b border-charcoal/10 px-5 py-3">
+              <div className="flex items-center gap-2">
+                <img src="/favicon.ico" alt="Martin i Ross" className="h-8 w-8 rounded-full" />
+                <span className="font-display text-[1.05rem]">
                   Martin <span className="italic text-clay">i</span> Ross
                 </span>
               </div>
               <button
                 aria-label="Cerrar menú"
                 onClick={() => setOpen(false)}
-                className="grid h-10 w-10 place-items-center"
+                className="grid h-9 w-9 place-items-center rounded-full border border-charcoal/15"
               >
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4" />
               </button>
             </div>
-            <ul className="mt-10 flex flex-col items-start gap-5 px-8">
+            <ul className="flex flex-1 flex-col justify-center gap-1 px-6">
               {NAV_LINKS.map((l, i) => (
                 <motion.li
                   key={l.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.06 * i, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <a
                     onClick={() => setOpen(false)}
                     href={l.href}
-                    className="font-display text-4xl text-charcoal"
+                    className="flex items-center justify-between border-b border-charcoal/8 py-4 font-display text-[2rem] text-charcoal transition-colors hover:text-terracota"
                   >
                     {l.label}
+                    <ArrowRight className="h-4 w-4 text-charcoal/30" />
                   </a>
                 </motion.li>
               ))}
             </ul>
+            <div className="border-t border-charcoal/10 px-6 py-6">
+              <a
+                href="#contacto"
+                onClick={() => setOpen(false)}
+                className="flex w-full items-center justify-center gap-2 bg-terracota py-3.5 text-[0.72rem] uppercase tracking-[0.18em] text-bone transition-all hover:bg-charcoal"
+              >
+                Solicitar cotización
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -235,113 +257,105 @@ function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section id="inicio" ref={ref} className="relative h-[100svh] w-full overflow-hidden bg-charcoal" style={{ minHeight: '500px' }}>
+    <section
+      id="inicio"
+      ref={ref}
+      className="relative w-full overflow-hidden bg-charcoal"
+      style={{ height: 'min(85svh, 700px)', minHeight: '520px' }}
+    >
+      {/* Background image with parallax */}
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <img
           src={hero}
           alt="Piezas de cerámica artesanal de Martin i Ross"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-center"
           width={1920}
           height={1280}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/20 to-charcoal/30" />
+        {/* Stronger overlay for legibility on mobile */}
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/85 via-charcoal/35 to-charcoal/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/30 to-transparent" />
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-24 pt-20 md:px-10 md:pb-32">
+      {/* Content */}
+      <div className="relative z-10 flex h-full flex-col justify-end px-5 pb-6 md:mx-auto md:max-w-[1400px] md:px-10 md:pb-32">
+
+        {/* Eyebrow — hidden on very small screens to save space */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 1 }}
-          className="mb-4 md:mb-8"
+          transition={{ delay: 0.4, duration: 0.9 }}
+          className="mb-3 hidden sm:block md:mb-8"
         >
-          <span className="eyebrow text-bone/70">
-            <span className="mr-3 inline-block h-px w-8 bg-bone/50 align-middle" />
-            Cali · Colombia · Desde el corazón del Valle
+          <span className="eyebrow text-bone/60">
+            <span className="mr-2 inline-block h-px w-6 bg-bone/40 align-middle" />
+            Cali · Colombia
           </span>
         </motion.div>
 
-        <div className="max-w-4xl">
-          <h1 className="font-display text-[2.4rem] leading-[0.95] text-bone sm:text-[3rem] md:text-[5.5rem] lg:text-[7rem]">
-            {"La belleza de la".split(" ").map((w, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + i * 0.08, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                className="mr-4 inline-block"
-              >
-                {w}
-              </motion.span>
-            ))}
-            <br />
-            <motion.span
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block italic text-clay"
-            >
-              cerámica
-            </motion.span>{" "}
-            <motion.span
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.95, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block"
-            >
-              hecha a mano.
-            </motion.span>
-          </h1>
-        </div>
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display text-[2.1rem] leading-[1.0] text-bone sm:text-[2.8rem] md:text-[5.5rem] lg:text-[7rem]"
+        >
+          La belleza de la<br />
+          <span className="italic text-clay">cerámica</span>{" "}
+          hecha a mano.
+        </motion.h1>
 
+        {/* Subheadline — shorter on mobile */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.9 }}
-          className="mt-5 max-w-xl text-[0.95rem] leading-relaxed text-bone/85 md:mt-10 md:text-[1.05rem]"
+          transition={{ delay: 0.75, duration: 0.9 }}
+          className="mt-3 max-w-sm text-[0.85rem] leading-relaxed text-bone/80 sm:max-w-md sm:text-[0.95rem] md:mt-8 md:max-w-xl md:text-[1.05rem]"
         >
-          Desde Cali creamos piezas artesanales que combinan tradición colombiana y diseño
-          contemporáneo para transformar cada espacio.
+          <span className="sm:hidden">Cerámica artesanal desde Cali, hecha a mano.</span>
+          <span className="hidden sm:inline">Desde Cali creamos piezas artesanales que combinan tradición colombiana y diseño contemporáneo.</span>
         </motion.p>
 
+        {/* CTA Buttons — compact row on mobile */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.35, duration: 0.9 }}
-          className="mt-6 flex flex-wrap gap-3 md:mt-10"
+          transition={{ delay: 0.9, duration: 0.8 }}
+          className="mt-4 flex items-center gap-2.5 md:mt-10 md:gap-3"
         >
           <Button
             href="#colecciones"
             variant="solid"
+            compact
             className="!bg-bone !text-charcoal hover:!bg-terracota hover:!text-bone"
           >
             Ver colecciones
           </Button>
-          <Button href="#contacto" variant="light">
-            Solicitar cotización
+          <Button href="#contacto" variant="light" compact>
+            Cotizar
           </Button>
         </motion.div>
-      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-        className="absolute bottom-0 left-0 right-0 z-10 border-t border-bone/15 bg-charcoal/40 backdrop-blur-sm"
-      >
-        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-px bg-bone/15 md:grid-cols-4" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
+        {/* Trust badges — only from sm up */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.1, duration: 0.8 }}
+          className="mt-5 hidden grid-cols-2 gap-px border-t border-bone/15 sm:grid md:mt-10 md:grid-cols-4"
+        >
           {["Fabricación propia", "Cerámica artesanal", "Envíos nacionales", "Diseño colombiano"].map(
             (t) => (
               <div
                 key={t}
-                className="flex items-center gap-2 bg-charcoal/70 px-3 py-3 text-[0.65rem] uppercase tracking-[0.1em] text-bone/85 md:px-6 md:py-4 md:text-[0.72rem] md:tracking-[0.15em]"
+                className="flex items-center gap-2 bg-charcoal/50 px-3 py-2.5 text-[0.62rem] uppercase tracking-[0.1em] text-bone/80 backdrop-blur-sm md:px-6 md:py-4 md:text-[0.72rem] md:tracking-[0.15em]"
               >
-                <Check className="h-3.5 w-3.5 text-clay" strokeWidth={2.5} />
+                <Check className="h-3 w-3 shrink-0 text-clay md:h-3.5 md:w-3.5" strokeWidth={2.5} />
                 {t}
               </div>
             ),
           )}
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }
@@ -545,8 +559,8 @@ function Colecciones() {
                   key={f}
                   onClick={() => setFilter(f)}
                   className={`px-4 py-2 text-[0.72rem] uppercase tracking-[0.18em] transition-all ${filter === f
-                      ? "bg-charcoal text-bone"
-                      : "border border-charcoal/20 text-charcoal/70 hover:border-charcoal"
+                    ? "bg-charcoal text-bone"
+                    : "border border-charcoal/20 text-charcoal/70 hover:border-charcoal"
                     }`}
                 >
                   {f}
@@ -1012,7 +1026,7 @@ function WhatsAppButton() {
 
 function Landing() {
   return (
-    <main className="bg-bone text-charcoal pt-[60px] md:pt-20">
+    <main className="bg-bone text-charcoal pt-[52px] md:pt-20">
       <Nav />
       <Hero />
       <Marquee />
