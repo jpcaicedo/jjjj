@@ -471,7 +471,7 @@ function Story() {
               />
             </div>
             <div className="absolute -bottom-8 -right-4 hidden bg-bone p-6 md:block">
-              <p className="font-display text-4xl italic text-terracota">45+</p>
+              <p className="font-display text-4xl italic text-terracota">10+</p>
               <p className="mt-1 text-xs uppercase tracking-[0.2em] text-charcoal/70">Años de oficio</p>
             </div>
           </div>
@@ -750,7 +750,7 @@ function Counter({ to }: { to: number }) {
 
 function Stats() {
   const stats = [
-    { n: 45, l: "Años creando" },
+    { n: 10, l: "Años creando" },
     { n: 120000, l: "Piezas fabricadas" },
     { n: 3500, l: "Clientes" },
     { n: 28, l: "Ciudades atendidas" },
@@ -875,7 +875,7 @@ const FAQ = [
   },
   {
     q: "¿Cuánto tarda un pedido?",
-    a: "Los pedidos en stock salen del taller en 3 a 5 días hábiles. Los pedidos bajo pedido pueden tomar entre 3 y 6 semanas.",
+    a: "Los pedidos en stock salen del taller en 3 a 5 días hábiles. Los pedidos pueden tomar entre 3 y 6 semanas.",
   },
   {
     q: "¿Fabrican bajo pedido?",
@@ -1010,7 +1010,7 @@ function Footer() {
             </a>
             <p className="mt-5 max-w-sm text-sm text-bone/70 md:mt-8 md:text-base">
               Cerámica artesanal hecha a mano en Cali, Colombia. Fabricación propia y diseño
-              contemporáneo desde hace más de cuatro décadas.
+              contemporáneo desde hace más de una década.
             </p>
             <div className="mt-6 flex items-center gap-3 md:mt-10">
               <a
